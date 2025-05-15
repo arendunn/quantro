@@ -1,8 +1,29 @@
+import { useState } from "react";
 import { useGoalContext } from "../context/GoalContext";
 import GoalCard from "./GoalCard";
+import GoalForm from "./GoalForm";
 
 function GoalDashboard() {
     const { goals } = useGoalContext();
+    const [ showForm, setShowForm ] = useState(false);
+
+    if (goals.length === 0) {
+        return (
+            <div className="flex flex-col items-center justify-top min-h-screen bg-gray-100 p-10">
+                <h1 className="text-3xl font-bold mb-6">Goal Dashboard</h1>   
+                <p className="text-lg mb-8">No goals found! Please add a new goal:</p>       
+                <button
+                    onClick={() => setShowForm(true)}
+                    className="flex justify-center items-center font-bold h-10 w-40 bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded"
+                >
+                + Add Goal
+                </button>
+                {showForm && (
+                    <GoalForm onClose={() => setShowForm(false)} />
+                )}
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col items-center justify-top min-h-screen bg-gray-100 p-10">
