@@ -11,12 +11,12 @@ function GoalDashboard() {
         return (
             <div className="flex flex-col items-center justify-top min-h-screen bg-gray-100 p-10 py-30">
                 <h1 className="text-3xl font-bold mb-6">Goal Dashboard</h1>   
-                <p className="text-lg mb-8">No goals found! Please add a new goal:</p>       
+                <p className="text-lg mb-8">No goals found!</p>       
                 <button
                     onClick={() => setShowForm(true)}
                     className="flex justify-center items-center font-bold h-10 w-40 bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded"
                 >
-                + Add Goal
+                + Add New Goal
                 </button>
                 {showForm && (
                     <GoalForm onClose={() => setShowForm(false)} />
@@ -27,12 +27,21 @@ function GoalDashboard() {
 
     return (
         <div className="flex flex-col items-center justify-top min-h-screen bg-gray-100 p-10">
-            <h1 className="text-3xl font-bold mb-6">Goal Dashboard</h1>
-            <div className="grid gap-6 w-full max-w-4xl p-4">
+            <h1 className="text-3xl font-bold mb-2">Goal Dashboard</h1>
+            <div className="grid gap-6 w-full max-w-4xl p-5">
                 {goals.map((goal) => (
                     <GoalCard key={goal.id} goal={goal} />
                 ))}
             </div>
+            <button
+                    onClick={() => setShowForm(true)}
+                    className="flex justify-center items-center font-bold h-10 w-40 bg-blue-500 hover:bg-blue-600 text-white mt-7 px-4 py-1 rounded"
+            >
+            + Add New Goal
+            </button>
+            {showForm && (
+                <GoalForm onClose={() => setShowForm(false)} />
+            )}
         </div>
     );
 }

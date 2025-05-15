@@ -13,7 +13,7 @@ const Navbar = () => {
             onClick={() => setShowForm(true)}
             className="flex justify-center items-center font-bold h-10 w-40 bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded hidden sm:flex"
           >
-            + Add Goal
+            + Add New Goal
           </button>
           <button
             onClick={() => setShowForm(true)}
