@@ -9,9 +9,9 @@ function GoalDashboard() {
 
     if (goals.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-top min-h-screen bg-gray-100 p-10 py-30">
-                <h1 className="text-3xl font-bold mb-6">Goal Dashboard</h1>   
-                <p className="text-lg mb-8">No goals found!</p>       
+            <div className="flex flex-col items-center justify-top min-h-screen min-h-screen bg-gray-100 p-10"> 
+                <p className="text-3xl font-bold">Welcome to Quantro!</p>
+                <p className="text-lg mb-8 pt-10">No goals found.</p>       
                 <button
                     onClick={() => setShowForm(true)}
                     className="flex justify-center items-center font-bold h-10 w-40 bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded"
@@ -27,7 +27,7 @@ function GoalDashboard() {
 
     return (
         <div className="flex flex-col items-center justify-top min-h-screen bg-gray-100 p-10">
-            <h1 className="text-3xl font-bold mb-2">Goal Dashboard</h1>
+            <p className="text-3xl font-bold">Financial Goals</p>
             <div className="grid gap-6 w-full max-w-4xl p-5">
                 {goals.map((goal) => (
                     <GoalCard key={goal.id} goal={goal} />
