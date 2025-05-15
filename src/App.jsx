@@ -10,6 +10,9 @@ const App = () => {
         <Navbar />
         <GoalDashboard />
       </GoalProvider>
+      <footer className="text-center py-4 mt-auto">
+        <p className="text-sm">© 2023 Quantro. All rights reserved.</p>
+      </footer>
     </div>
   )
 }
