@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useGoalContext } from "../context/GoalContext";
-import AddFundsModal from "./AddFundsModal";
 import ConfirmModal from "./ConfirmModal";
+import EditGoalModal from "./EditGoalModal";
+import AddFundsModal from "./AddFundsModal";
 import dayjs from "dayjs";
 
 function GoalCard({ goal }) {
-    const { addFunds, deleteGoal } = useGoalContext();
+    const { addFunds, editGoal, deleteGoal } = useGoalContext();
     const [showConfirm, setShowConfirm] = useState(false);
+    const [showEditGoal, setShowEditGoal] = useState(false);
     const [showAddFunds, setShowAddFunds] = useState(false);
 
     const {
@@ -21,7 +23,7 @@ function GoalCard({ goal }) {
     const today = dayjs();
     const targetDateObj = dayjs(targetDate);
     const daysLeft = targetDateObj.diff(today, "day");
-    const weeksLeft = targetDateObj.diff(today, "week");
+    const weeksLeft = daysLeft / 7;
     const monthsLeft = targetDateObj.diff(today, "month");
     
     const remainingAmount = targetAmount - currentAmount;
@@ -41,6 +43,10 @@ function GoalCard({ goal }) {
             toSavePerWeekWithInterest = P / 4.345;
         }
     }
+
+    const handleEditGoal = () => {
+        setShowEditGoal(true);
+    };
 
     const handleAddFunds = () => {
         setShowAddFunds(true)
@@ -127,16 +133,35 @@ function GoalCard({ goal }) {
                     <p><strong>To Save Per Week (With {interestRate}% Interest):</strong> ${formatMoney(toSavePerWeekWithInterest)}</p>
                     <p><strong>To Save Per Week (Without Interest):</strong> ${formatMoney(toSavePerWeekWithoutInterest)}</p>
                 </div>
-
-                <div className="flex justify-end gap-2">
-                    <button
-                        onClick={handleAddFunds}
-                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded"
-                    >
-                        Add Funds
-                    </button>
+                <div className='flex justify-center items-center gap-2'>
+                    <div className="flex justify-end gap-2">
+                        <button
+                            onClick={handleEditGoal}
+                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded"
+                        >
+                            Edit Goal
+                        </button>
+                    </div>
+                    <div className="flex justify-end gap-2">
+                        <button
+                            onClick={handleAddFunds}
+                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded"
+                        >
+                            Add Funds
+                        </button>
+                    </div>
                 </div>
             </div>
+            {showEditGoal && (
+                <EditGoalModal
+                    goal={goal}
+                    onClose={() => setShowEditGoal(false)}
+                    onSubmit={(goalId, updatedGoal) => {
+                        editGoal(goalId, updatedGoal);
+                        setShowEditGoal(false);
+                    }}
+                />
+            )}  
             {showAddFunds && (
                 <AddFundsModal
                     goalId={goal.id}

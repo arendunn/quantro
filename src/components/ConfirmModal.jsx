@@ -1,6 +1,6 @@
 function ConfirmModal({ message, onConfirm, onCancel }) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-white/90">
+    <div className="fixed inset-0 flex items-center justify-center bg-white/90 p-20">
       <div className="bg-white rounded shadow-lg p-6 max-w-sm w-full">
         <p className="mb-4">{message}</p>
         <div className="flex justify-end gap-3">

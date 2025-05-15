@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 function AddFundsModal({ goalId, message, onClose, onSubmit }) {
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState("");
 
     const handleSubmit = () => {
         onSubmit(goalId, amount);
     };
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-white/90">
+        <div className="fixed inset-0 flex items-center justify-center bg-white/90 p-10">
         <div className="bg-white rounded shadow-lg p-6 max-w-sm w-full">
             <p className="text-xl font-bold mb-4">Add Funds</p>
             <p className="mb-1">{message}</p>

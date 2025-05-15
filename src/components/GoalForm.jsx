@@ -49,14 +49,13 @@ function GoalForm({ onClose }) {
                             required />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700">Interest Rate</label>
+                        <label className="block text-gray-700">Interest Rate (%)</label>
                         <input 
                             value={interestRate}
                             onChange={(e) => setInterestRate(e.target.value)}
                             type="number"
                             className="border rounded w-full py-2 px-3"
-                            placeholder="0.00% p.a."
-                            required />
+                            placeholder="0.00% p.a." />
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700">Target Amount</label>
