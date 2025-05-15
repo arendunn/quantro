@@ -11,7 +11,7 @@ function AddFundsModal({ goalId, message, onClose, onSubmit }) {
         <div className="fixed inset-0 flex items-center justify-center bg-white/90 p-10">
         <div className="bg-white rounded shadow-lg p-6 max-w-sm w-full">
             <p className="text-xl font-bold mb-4">Add Funds</p>
-            <p className="mb-1">{message}</p>
+            <p className="mb-1 block text-gray-700">{message}</p>
             <input
                 type="number"
                 value={amount}
@@ -20,20 +20,18 @@ function AddFundsModal({ goalId, message, onClose, onSubmit }) {
                 placeholder="$0.00"
                 required
             />
-            <div className="flex justify-end gap-3">
+            <button
+                onClick={handleSubmit}
+                className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+            >
+                Submit
+            </button>
             <button
                 onClick={onClose}
                 className="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400"
             >
                 Close
             </button>
-            <button
-                onClick={handleSubmit}
-                className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700"
-            >
-                Submit
-            </button>
-            </div>
         </div>
         </div>
     );
