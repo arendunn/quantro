@@ -68,7 +68,7 @@ yarn dev
 src/
 ├── components/         # Reusable UI components (GoalCard, Modals, etc.)
 ├── context/            # Context API for global goal state
-├── pages/              # Page-level components like Home
+├── assets/             # Icons, images, ect.
 ├── App.jsx             # Root app component
 └── main.jsx            # Application entry point
 ```
