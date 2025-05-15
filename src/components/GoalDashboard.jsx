@@ -9,7 +9,7 @@ function GoalDashboard() {
 
     if (goals.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-top min-h-screen bg-gray-100 p-10">
+            <div className="flex flex-col items-center justify-top min-h-screen bg-gray-100 p-10 py-30">
                 <h1 className="text-3xl font-bold mb-6">Goal Dashboard</h1>   
                 <p className="text-lg mb-8">No goals found! Please add a new goal:</p>       
                 <button
