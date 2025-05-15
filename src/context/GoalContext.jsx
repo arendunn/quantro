@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const GoalContext = createContext();
 
@@ -6,8 +7,9 @@ export const GoalProvider = ({ children }) => {
     const [goals, setGoals] = useState([]);
 
     const addGoal = (goal) => {
-        setGoals((prevGoals) => [...prevGoals, goal]);
-    }
+        const newGoal = { ...goal, id: uuidv4(), currentAmount: 0 };
+        setGoals((prevGoals) => [...prevGoals, newGoal]);
+    };
 
     const addFunds = (goalId, amount) => {
         setGoals((prevGoals) =>

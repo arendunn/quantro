@@ -28,8 +28,8 @@ function GoalCard({ goal }) {
     
     const remainingAmount = targetAmount - currentAmount;
     const monthlyRate = (interestRate / 100) / 12;
-
     const progress = ((currentAmount / targetAmount) * 100).toFixed(2);
+    const dateDiff = Math.abs(targetDateObj.diff(today, "day"));
 
     const toSavePerWeekWithoutInterest = weeksLeft > 0 ? (remainingAmount / weeksLeft) : 0;
 
@@ -77,7 +77,22 @@ function GoalCard({ goal }) {
                     <h2 className="text-xl font-semibold">{name}</h2>
                     <button onClick={handleDeleteClick} className="text-red-500">✕</button>
                 </div>
-                <p className="text-green-500 text-lg font-bold">Goal Achieved!</p>
+                <p className="text-green-500 text-lg font-bold">Goal Completed!</p>
+                <div className="w-full bg-gray-200 h-3 rounded-full">
+                    <div
+                        className="h-3 bg-green-500 rounded-full"
+                        style={{ width: `100%` }}
+                    ></div>
+                </div>
+                <div className='flex justify-center items-center flex-col w-full'>
+                    <p className='text-3xl font-semibold text-gray-800'>100%</p>
+                    <p className='text-m font-semibold text-gray-800'>(${formatMoney(currentAmount)} / ${formatMoney(targetAmount)})</p>
+                    <p className='text-m font-semibold text-gray-800'>Completed {dateDiff} Days early!</p>
+                </div>
+                <div className="text-sm text-gray-800 space-y-1">
+                    <p><strong>Target Date:</strong> {targetDateObj.format("MMMM D, YYYY")}</p>
+                    <p><strong>Completion Date:</strong> {today.format("MMMM D, YYYY")}</p>
+                </div>
                 {showConfirm && (
                     <ConfirmModal
                         message="Are you sure you want to delete this goal?"
@@ -99,6 +114,21 @@ function GoalCard({ goal }) {
                         <button onClick={handleDeleteClick} className="text-red-500">✕</button>
                     </div>
                     <p className="text-red-500 text-lg font-bold">Goal Missed!</p>
+                    <div className="w-full bg-gray-200 h-3 rounded-full">
+                    <div
+                        className="h-3 bg-red-500 rounded-full"
+                        style={{ width: `${progress}%` }}
+                    ></div>
+                    </div>
+                    <div className='flex justify-center items-center flex-col w-full'>
+                        <p className='text-3xl font-semibold text-gray-800'>{progress}%</p>
+                        <p className='text-m font-semibold text-gray-800'>(${formatMoney(currentAmount)} / ${formatMoney(targetAmount)})</p>
+                        <p className='text-m font-semibold text-gray-800'>{dateDiff} Days overdue!</p>
+                    </div>
+                    <div className="text-sm text-gray-800 space-y-1">
+                        <p><strong>Target Date:</strong> {targetDateObj.format("MMMM D, YYYY")}</p>
+                        <p><strong>Current Date:</strong> {today.format("MMMM D, YYYY")}</p>
+                    </div>
                     {showConfirm && (
                         <ConfirmModal
                         message="Are you sure you want to delete this goal?"
