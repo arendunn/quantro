@@ -23,7 +23,7 @@ function GoalCard({ goal }) {
     const today = dayjs();
     const targetDateObj = dayjs(targetDate);
     const daysLeft = targetDateObj.diff(today, "day");
-    const weeksLeft = daysLeft / 7;
+    const weeksLeft = (daysLeft / 7).toFixed(2);
     const monthsLeft = targetDateObj.diff(today, "month");
     
     const remainingAmount = targetAmount - currentAmount;
@@ -125,8 +125,10 @@ function GoalCard({ goal }) {
                         style={{ width: `${progress}%` }}
                     ></div>
                 </div>
-                <p className="text-sm text-center">{progress}% Saved (${formatMoney(currentAmount)} / ${formatMoney(targetAmount)})</p>
-
+                <div className='flex justify-center items-center flex-col w-full'>
+                    <p className='text-3xl font-semibold text-gray-800'>{progress}%</p>
+                    <p className='text-m font-semibold text-gray-800'>(${formatMoney(currentAmount)} / ${formatMoney(targetAmount)})</p>
+                </div>
                 <div className="text-sm text-gray-800 space-y-1">
                     <p><strong>Target Date:</strong> {targetDateObj.format("MMMM D, YYYY")}</p>
                     <p><strong>Time Left:</strong> {weeksLeft} Weeks ({daysLeft} Days)</p>
